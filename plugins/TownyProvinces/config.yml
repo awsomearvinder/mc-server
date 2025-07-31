@@ -1,0 +1,199 @@
+  
+version:
+  # This is the current version.  Please do not edit.
+  version: 2.2.0
+# The language file you wish to use
+language: english.yml
+  
+# If true, the TownyProvinces plugin is enabled.
+enabled: 'true'
+  
+# The name of the world where TownyProvinces appplies.
+# TownyProvinces does not yet support multiple worlds
+world_name: world
+  
+# Governs the pause between biome lookups.
+# A high value will make the landvalidation job run slow
+# A low value will make the landvalidation job take up lots of CPU
+pause_milliseconds_between_biome_lookups: '1000'
+  
+# Determines how many townblocks a town can have in each foreign province.
+# These townblocks can only be unlocked by building an outpost in a sea or wasteland province.
+max_num_townblocks_in_each_foreign_province: '8'
+  
+# This value determines the cost limit of each province.
+# The value to both newTownCost and upkeepTownCost.
+# The value is a proportion of the 'average regional province price without outliers', if you know what I mean....
+# If you don't know what I mean, use caution when adjusting.
+province_cost_limit_proportion: '1.7'
+  
+  
+############################################################
+# +------------------------------------------------------+ #
+# |                 BIOME COST ADJUSTMENTS               | #
+# +------------------------------------------------------+ #
+############################################################
+  
+biome_cost_adjustments:
+  
+  # If this is true, then province costs are adjusted by the biomes contained in the province.
+  enabled: 'true'
+  
+  # Assuming server doesn't allow modifying coastline, these chunks can only be settled by going underground.
+  water: '0.05'
+  
+  # Desert. Hard to grow crops, can't find animals, and sand is easily griefable.
+  hot_land: '0.3'
+  
+  # Snow and ice. Very hard to live in.
+  cold_land: '0.1'
+  
+  
+############################################################
+# +------------------------------------------------------+ #
+# |                   PROVINCE TYPES                   | #
+# +------------------------------------------------------+ #
+############################################################
+  
+province_types:
+  
+  
+  # +------------------------------------------------------+ #
+  # |                      CIVILIZED                       | #
+  # +------------------------------------------------------+ #
+  
+  civilized:
+  
+    border_appearance:
+  
+      # This value determines the weight of the border.
+      weight: '1'
+  
+      # This value determines the opacity of the border.
+      opacity: '0.9'
+  
+      # This value, in hex format, determines the color of the border.
+      color: '0'
+  
+  
+  # +------------------------------------------------------+ #
+  # |                          SEA                         | #
+  # +------------------------------------------------------+ #
+  
+  sea:
+  
+    foreign_outposts_allowed: 'true'
+  
+    border_appearance:
+  
+      # This value determines the weight of the border.
+      weight: '1'
+  
+      # This value determines the opacity of the border.
+      opacity: '0.1'
+  
+      # This value, in hex format, determines the color of the border.
+      color: 33FFFF
+  
+  
+  # +------------------------------------------------------+ #
+  # |                      WASTELAND                       | #
+  # +------------------------------------------------------+ #
+  
+  wasteland:
+  
+    foreign_outposts_allowed: 'true'
+  
+    border_appearance:
+  
+      # This value determines the weight of the border.
+      weight: '1'
+  
+      # This value determines the opacity of the border.
+      opacity: '1'
+  
+      # This value, in hex format, determines the color of the border.
+      color: e60909
+  
+  
+############################################################
+# +------------------------------------------------------+ #
+# |                MAP PLUGIN INTEGRATION                | #
+# +------------------------------------------------------+ #
+############################################################
+  
+map_integration:
+  
+  # The period between map refreshes.
+  # A high value is softer on your CPU.
+  # A low value means quicker map changes in response to things like province type or nation-color changes
+  refresh_period_seconds: '30'
+  
+  
+  # +------------------------------------------------------+ #
+  # |                  TOWN COSTS ICON                     | #
+  # +------------------------------------------------------+ #
+  
+  town_costs_icon:
+  
+    # Custom icon for the town costs. This must be a valid URL, or a filepath in TownyProvinces folder.
+    # Leave this empty to use the included default coin icon.
+    # Default coin icon created by Md Tanvirul Haque - Flaticon
+    # https://www.flaticon.com/free-icon/dollar_9729309
+    path: ''
+  
+    # Height in pixels for the town costs icon to be displayed as.
+    height: '35'
+  
+    # Width in pixels for the town costs icon to be displayed as.
+    width: '35'
+  
+  
+  # +------------------------------------------------------+ #
+  # |                   NATION COLORS                      | #
+  # +------------------------------------------------------+ #
+  
+  nation_colors: ''
+  province_nation_colors:
+  
+    # If this value is true, then a province containing a nation-town, gets filled with the map-color of that nation.
+    enabled: 'true'
+  
+    # This value determines the opacity of the province nation color.
+    opacity: '0.2'
+  
+  
+  # +------------------------------------------------------+ #
+  # |                        DYNMAP                        | #
+  # +------------------------------------------------------+ #
+  
+  dynmap:
+  
+    # Toggle whether Dynmap should use your specified town_costs_icon, or an inbuilt Dynmap icon.
+    use_town_costs_icon: 'false'
+  
+  
+  # +------------------------------------------------------+ #
+  # |                        PL3XMAP                       | #
+  # +------------------------------------------------------+ #
+  
+  pl3xmap:
+  
+    provinces_layer:
+  
+      # You do not need to change this unless other map addons conflict with the provinces layer.
+      priority: '6'
+  
+      # You can decrease this value to blend the provinces layer with the map more.
+      zindex: '250'
+  
+      # Set to false to disallow users from toggling the provinces layer.
+      toggleable: 'true'
+  
+    town_costs_layer:
+  
+      # You do not need to change this unless other map addons conflict with the town costs layer.
+      priority: '6'
+  
+      # You can decrease this value to blend the town costs layer with the map more.
+      zindex: '250'

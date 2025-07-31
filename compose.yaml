@@ -1,0 +1,12 @@
+services:
+  mc:
+    build: .
+    environment:
+      EULA: "TRUE"
+    ports:
+    - 25565:25565
+    - 80:8123
+    stdin_open: true
+    tty: true
+    volumes:
+      - /home/bender/nvme_crap/mc-data:/data:rw

@@ -1,0 +1,105 @@
+# CraftBook Configuration for Bukkit.
+# This configuration will automatically add new configuration options for you,
+# So there is no need to regenerate this configuration unless you want to.
+# More information about these features are available at:
+# https://craftbook.enginehub.org/en/5.0.0/mechanics/
+#
+# NOTE! NOTHING IS ENABLED BY DEFAULT! ENABLE FEATURES TO USE THEM!
+
+
+# List of mechanics and whether they are enabled or not
+mechanics:
+    boat:
+        boat_empty_decay: false
+        boat_exit_remover: false
+        boat_impact_damage: false
+    circuit:
+        jack_o_lantern: false
+        redstone_fire: false
+        redstone_glowstone: false
+        redstone_jukebox: false
+    general:
+        better_ai: true
+        better_leads: false
+        better_physics: false
+        better_pistons: false
+        better_plants: false
+        better_sponge: false
+        bridge: false
+        chairs: false
+        chunk_anchor: false
+        cooking_pot: false
+        dispenser_recipes: false
+        door: false
+        elevator: false
+        gate: false
+        head_drops: false
+        hidden_switch: false
+        light_switch: false
+        marquee: false
+        painting_switcher: false
+        readable_bookshelf: false
+        snow: false
+        teleporter: false
+        toggle_area: false
+        tree_lopper: false
+        variables: true
+        xp_storer: false
+    minecart:
+        minecart_booster: false
+        minecart_collision_entry: false
+        minecart_dispenser: false
+        minecart_ejector: false
+        minecart_elevator: false
+        minecart_empty_decay: false
+        minecart_exit_remover: false
+        minecart_impact_damage: false
+        minecart_item_pickup: false
+        minecart_light_braker: false
+        minecart_max_booster: false
+        minecart_no_collide: false
+        minecart_physics_control: false
+        minecart_rail_placer: false
+        minecart_reverser: false
+        minecart_station: false
+        minecart_strong_braker: false
+        minecart_teleporter: false
+        more_rails: false
+        temporary_cart: false
+    tool:
+        ammeter: false
+        lightstone: false
+        sign_copier: false
+
+# WARNING! Changing this can result in all ST mechanics acting very weirdly, only change this if you know what you are doing!
+st-think-ticks: 2
+
+# Causes many mechanics to require sufficient blocks to function, for example gates, bridges and doors.
+safe-destruction: true
+
+# If on, OP's will not default to have access to everything.
+no-op-permissions: false
+
+# Allows redstone not directly facing a mechanism to trigger said mechanism.
+indirect-redstone: false
+
+# Whether WorldGuard flags should be checked when performing CraftBook actions.
+obey-worldguard-flags: true
+
+# Whether to obey other plugins attempts to cancel CraftBook actions.
+obey-plugin-protections: true
+
+# How often in milliseconds players can interact with CraftBook signs.
+sign-click-timeout: 500
+
+# Enable a mode that will print extra debug information to the console.
+debug-mode: false
+
+# Causes all debug mode output to be logged into a file. This file is reset every startup (And every /cb reload).
+debug-mode-file-logging: false
+
+# Enable certain debug types when debug mode is enabled.
+debug-flags: []
+
+# Show messages when a player does not have permission to do something.
+show-permission-messages: true
