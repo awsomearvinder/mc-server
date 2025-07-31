@@ -1,6 +1,6 @@
 services:
   mc:
-    build: .
+    image: ghcr.io/awsomearvinder/mc-server:latest
     environment:
       EULA: "TRUE"
     ports:

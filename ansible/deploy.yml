@@ -1,0 +1,50 @@
+---
+- name: deploy minecraft server
+  hosts: minecraft.pcparadise.net
+  user: ubuntu
+  become: true
+  tasks:
+    - name: Make sure we have podman.
+      ansible.builtin.package:
+        name: podman
+        state: present
+
+    - name: Set up environment variables.
+      ansible.builtin.copy:
+        content: |
+          ENABLE_WHITELIST=true
+          WHITELIST=
+          DIFFICULTY=normal
+          OP_PERMISSION_LEVEL=4
+          EULA=true
+        dest: /home/ubuntu/env_vars.env
+
+    - name: Configure podman
+      containers.podman.podman_container:
+        name: mc-server
+        image: ghcr.io/awsomearvinder/mc-server:latest
+        state: quadlet
+        volumes:
+          /home/ubuntu/mc-data:/data
+        quadlet_options:
+          - "AutoUpdate=registry"
+          - "Pull=newer"
+          - "PublishPort=25565:25565,80:8123"
+          - "EnvironmentFile=/home/ubuntu/env_vars.env"
+          - |
+            [Install]
+            WantedBy=default.target
+
+    - name: Make sure minecraft is running.
+      ansible.builtin.systemd_service:
+        name: mc-server
+        state: started
+        enabled: true
+        daemon_reload: true
+
+    - name: Configure autoupdate
+      ansible.builtin.systemd:
+        name: podman-auto-update
+        state: restarted
+        enabled: true
+
