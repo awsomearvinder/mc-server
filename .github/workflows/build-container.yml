@@ -34,3 +34,23 @@ jobs:
         push: true
         tags: ghcr.io/${{ github.repository }}:latest
 
+    - name: Install ansible
+      run: sudo apt-get install ansible -y
+
+    - name: Install SSH key
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan minecraft.pcparadise.net > ~/.ssh/known_hosts
+        cat << EOF > ~/.ssh/known_hosts
+        minecraft.pcparadise.net ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC+PJSvPofJ5rDqf7AvZfBv3H9tyOCc9dC88++MpBEE+VTmznfqKclTZRYQdYTgkC6sv5hjCBbb3HDRr4w1KiVpM+2+6HF3NgiTFtDjJf4/ROWnzS/tu6ulAf4VCd9qg2RHt3nw1ML4eTYoOATiJHo+a7xl4KKtTLs9YGmrlZHXZXiY+w7A+QRILdgLcccZx4jHiqQ3lW8rg7CG0Gv1EZp+hW/GJczLwoeS9u/5lZpT2y9HX7Y2I/iBZRs+OiFQ8aqjJu6+8E/Q6N2IZbHy8fSMf2E1oXoyn1diW0wZNGdYmcta2cmCnBHZLc6cCac5HZhne7oR8rKidklsfhlN1dEjVbso+tqqdNyxI7DVEMvxyIbNdvdKJ+bYXTd0BuEeqnOkb/Z1geccQKvil/T8SHEWGL2WHMIhg0Xat8BUG01onC7IHmKNrs/pd4lvtnonEuWfUZhp8O/AP/BxLc9fcp42bJ5OFcSYAjvwjHAA8jsxKdlwlmZ6GUzjAxz3p4343Ts=
+        minecraft.pcparadise.net ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMGB+TgaGKUo2eLtrhi4YCRo7E/BvrqrFsNCXWCWd6qqK6mtHfY4N4iSsyGpjyauiRrm+F0w2QoYB44L17yruz8=
+        minecraft.pcparadise.net ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJrCBmNMRjNiOyGnELMvuVqtAoPgHBLfNLqYYK2dZIZZ
+        EOF
+
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/github_actions
+        chmod 0600 ~/.ssh/github_actions
+
+    - name: Run deployment.
+      run: |
+        ansible-playbook ansible/deploy.yml -i ansible/inventory.yml --private-key ~/.ssh/github_actions
+        
