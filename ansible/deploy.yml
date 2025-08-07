@@ -51,4 +51,4 @@
       ansible.builtin.systemd:
         name: mc-server
         state: restarted
-        enalbed: true
+        enabled: true
