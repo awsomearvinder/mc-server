@@ -13,7 +13,7 @@
       ansible.builtin.copy:
         content: |
           ENABLE_WHITELIST=true
-          WHITELIST=
+          WHITELIST=John_Benber
           DIFFICULTY=normal
           OP_PERMISSION_LEVEL=4
           EULA=true
