@@ -11,9 +11,11 @@
 
     - name: Set up environment variables.
       ansible.builtin.copy:
+        # TODO: would be nice to have WHITELIST be a list var in ansible, and to be turned into
+        # the CSV format via a jinja filter. Currently it's just hardcoded in here.
         content: |
           ENABLE_WHITELIST=true
-          WHITELIST=John_Benber,ganoodles,Pokererere1,CrimsonHawk,citysiege
+          WHITELIST=John_Benber,ganoodles,Pokererere1,CrimsonHawk,citysiege,ProfessorBones
           DIFFICULTY=normal
           OP_PERMISSION_LEVEL=4
           EULA=true
